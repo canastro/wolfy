@@ -1,22 +1,22 @@
 import moment from 'moment';
 import {
-    GET_CHART_REQUEST,
-    GET_CHART_FAILURE,
-    GET_CHART_SUCCESS
-} from '../actions/sentiment-actions';
+    GET_ORDERS_REQUEST,
+    GET_ORDERS_SUCCESS,
+    GET_ORDERS_FAILURE
+} from '../actions/order-actions';
 
 const defaultState = {
     isFetching: false,
     list: []
 };
 
-export default function sentiment(state = defaultState, action) {
+export default function order(state = defaultState, action) {
     switch (action.type) {
-    case GET_CHART_REQUEST:
+    case GET_ORDERS_REQUEST:
         return { ...state, isFetching: true };
 
-    case GET_CHART_SUCCESS: {
-        const list = action.response.data.sentimentreports
+    case GET_ORDERS_SUCCESS: {
+        const list = action.response.data.orders
             .map(item => ({
                 ...item,
                 date: moment(item.date).startOf('second').toDate()
@@ -30,7 +30,7 @@ export default function sentiment(state = defaultState, action) {
         };
     }
 
-    case GET_CHART_FAILURE:
+    case GET_ORDERS_FAILURE:
         return { ...state, isFetching: false };
 
     default:

@@ -37,7 +37,18 @@ export function getChart(symbol, indicator) {
 }
 
 export function getSentimentReport(symbol) {
-    const query = 'query ($symbol: String!) { sentimentreports(symbol: $symbol) {  symbol, type, date, articles_sentiment, articles_volume, tweet_relative_sentiment, tweet_absolute_sentiment, tweet_volume  } }';
+    const query = `query ($symbol: String!) {
+        sentimentreports(symbol: $symbol) {
+            symbol,
+            type,
+            date,
+            articles_sentiment,
+            articles_volume,
+            tweet_relative_sentiment,
+            tweet_absolute_sentiment,
+            tweet_volume
+        }
+    }`;
 
     return dispatch => dispatch({
         [CALL_API]: {
