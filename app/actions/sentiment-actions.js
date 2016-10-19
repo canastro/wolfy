@@ -19,11 +19,6 @@ export function getChart(symbol, indicator) {
     //     }
     // }`;
 
-    const variables = {
-        symbol,
-        indicator
-    };
-
     return dispatch => dispatch({
         [CALL_API]: {
             types: [
@@ -33,7 +28,29 @@ export function getChart(symbol, indicator) {
             ],
             path: 'graphqlv2',
             query,
-            variables
+            variables: {
+                symbol,
+                indicator
+            }
+        }
+    });
+}
+
+export function getSentimentReport(symbol) {
+    const query = 'query ($symbol: String!) { sentimentreports(symbol: $symbol) {  symbol, type, date, articles_sentiment, articles_volume, tweet_relative_sentiment, tweet_absolute_sentiment, tweet_volume  } }';
+
+    return dispatch => dispatch({
+        [CALL_API]: {
+            types: [
+                GET_CHART_REQUEST,
+                GET_CHART_SUCCESS,
+                GET_CHART_FAILURE
+            ],
+            path: 'graphql',
+            query,
+            variables: {
+                symbol
+            }
         }
     });
 }

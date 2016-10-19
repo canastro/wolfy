@@ -1,33 +1,26 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 
 import '!style!css!sass!./home.scss';
 
-import Chart from '../chart/chart';
+import Sentiment from '../chart/sentiment';
 
-export default class Home extends Component {
+export default class Home extends PureComponent {
     constructor(props) {
         super(props);
 
-        this.props.getChart('TSLA', {
-            name: 'ACCBANDS',
-            params: {
-                optInTimePeriod: 20
-            }
-        });
-
-        // http://nicolashery.com/integrating-d3js-visualizations-in-a-react-app/
+        this.props.getSentimentReport('TSLA');
     }
 
     render() {
         return (
-            <div className="pn-editor-container">
-                <Chart prices={this.props.prices} />
+            <div className="home-container page-wrapper">
+                <Sentiment title="Sentiment" data={this.props.sentimentReports} />
             </div>
         );
     }
 }
 
 Home.propTypes = {
-    getChart: PropTypes.func.isRequired,
-    prices: PropTypes.array
+    getSentimentReport: PropTypes.func.isRequired,
+    sentimentReports: PropTypes.array
 };

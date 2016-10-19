@@ -9,12 +9,14 @@
         "no-underscore-dangle": "off",
 
         "no-cond-assign": ["error", "always"],
+        import/no-unresolved: [2, { ignore: ['\.scss$'] }],
 
         "no-console": "off",
         "global-require": "off",
 
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
         "react/forbid-prop-types": ["warn", { "forbid": ["any"] }],
         "react/prefer-stateless-function": ["error", { "ignorePureComponents": true }]
     },

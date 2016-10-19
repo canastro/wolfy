@@ -1,0 +1,12 @@
+@import '../../assets/palette';
+
+.header-container {
+    display: flex;
+    align-items: center;
+    height: 75px;
+    background-color: $blue-dark;
+
+    .header-symbol-search {
+        margin-left: 100px;
+    }
+}

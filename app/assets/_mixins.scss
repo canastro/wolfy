@@ -1,0 +1,43 @@
+/*
+ * Since we're using Bourbon we have a lot of mixins out of the box: http://bourbon.io/docs/#clearfix
+ */
+
+@function type-scale($level) {
+    @return map-get($type-scale, $level);
+}
+
+@function line-height($level) {
+    @return map-get($line-heights, $level);
+}
+
+@mixin type-setting($level: 0) {
+    font-size: type-scale($level);
+    line-height: line-height($level);
+}
+
+/**
+ * @usage:
+ *  .footer-wrap {
+ *      width: 450px;
+ *      @include center-block;
+ *  }
+ */
+@mixin center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/**
+ * @usage:
+ *  *,
+ *  *:after,
+ *  *:before {
+ *      @include box-sizing(border-box);
+ *  }
+ */
+@mixin box-sizing($box-model) {
+    -webkit-box-sizing: $box-model; // Safari <= 5
+    -moz-box-sizing: $box-model; // Firefox <= 19
+    box-sizing: $box-model;
+}

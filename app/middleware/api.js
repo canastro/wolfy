@@ -27,7 +27,7 @@ export const CALL_API = 'CALL_API';
 
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
-export default store => next => (action) => {
+export default () => next => (action) => {
     const callAPI = action[CALL_API];
 
     if (typeof callAPI === 'undefined') {
@@ -54,6 +54,7 @@ export default store => next => (action) => {
     next(actionWith({ type: requestType }));
 
     return callApi(path, query, variables)
+        .then(data => data.json())
         .then((response) => {
             next(actionWith({
                 response,

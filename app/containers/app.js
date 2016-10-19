@@ -1,12 +1,30 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import { red500 } from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import '!style!css!sass!./app.scss';
+
+import HeaderContainer from './header/header';
+
+const muiTheme = getMuiTheme({
+    palette: {
+        primary1Color: '#2eb398',
+        accent1Color: red500
+    }
+});
+
 class App extends PureComponent {
     render() {
         return (
-            <div className="app-container">
-                {this.props.children}
-            </div>
+            <MuiThemeProvider muiTheme={muiTheme}>
+                <div className="app-container">
+                    <HeaderContainer />
+                    {this.props.children}
+                </div>
+            </MuiThemeProvider>
         );
     }
 }
