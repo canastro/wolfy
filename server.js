@@ -1,8 +1,8 @@
 'use strict';
 
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const config = require('./webpack.config');
 
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
@@ -11,7 +11,7 @@ new WebpackDevServer(webpack(config), {
     stats: {
         colors: true
     }
-}).listen(3000, '0.0.0.0', function (err) {
+}).listen(3000, '0.0.0.0', (err) => {
     if (err) {
         console.log(err);
     }

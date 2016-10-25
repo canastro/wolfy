@@ -1,6 +1,6 @@
 {
-  "name": "aviago-travel-client",
-  "description": "Aviago Travel Client v2",
+  "name": "wolfy-inspector",
+  "description": "Wolfy Inspector",
   "version": "0.0.1",
   "author": "",
   "license": "ISC",
@@ -28,7 +28,6 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
     "fbjs-scripts": "^0.7.0",
-    "fs": "0.0.2",
     "jscs": "^3.0.3",
     "jscs-loader": "^0.3.0",
     "json-loader": "^0.5.4",
@@ -40,7 +39,8 @@
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-hot-middleware": "^2.10.0",
+    "shipit-deploy": "^2.2.0"
   },
   "dependencies": {
     "es6-promise": "^3.2.1",

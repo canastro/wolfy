@@ -34,9 +34,7 @@ export default class Header extends PureComponent {
     _handleChange(event) {
         const symbol = event.target.value;
 
-        this.setState({ symbol }, () => {
-            this.setSymbol(symbol);
-        });
+        this.setState({ symbol }, () => this.setSymbol(symbol));
     }
 
     render() {
