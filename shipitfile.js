@@ -27,7 +27,7 @@ module.exports = (shipit) => {
         shipit.start('post-publish');
     });
 
-    shipit.task('post-publish', ['clear-nodemodules', 'npm-install']);
+    shipit.task('post-publish', ['clear-nodemodules', 'npm-install', 'build']);
 
     // npm install
     // ----------------------------------------------------------------
@@ -37,6 +37,10 @@ module.exports = (shipit) => {
 
     shipit.blTask('npm-install', () =>
         shipit.remote(`cd ${deployToCurrent} && npm install`)
+    );
+
+    shipit.task('build', () =>
+        shipit.remote(`cd ${deployToCurrent} && npm run build:production`)
     );
 
     // ngnix commands

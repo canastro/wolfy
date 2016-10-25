@@ -1,13 +1,13 @@
 'use strict';
 
-var path = require('path');
-var webpack = require('webpack');
-var fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
+const fs = require('fs');
 
-var paths = [];
+let paths = [];
 paths = paths.concat(require('node-neat').includePaths);
 paths = paths.concat(require('node-bourbon').includePaths);
-paths.map((path) => fs.realpathSync(path));
+paths.map(item => fs.realpathSync(item));
 
 const appDir = fs.realpathSync(path.resolve(__dirname, 'app'));
 
@@ -19,9 +19,8 @@ module.exports = {
         './app/index.js'
     ],
     output: {
-        path: fs.realpathSync(path.join(__dirname, 'static')),
-        filename: 'bundle.js',
-        publicPath: '/assets/'
+        path: fs.realpathSync(path.join(__dirname, 'assets')),
+        filename: 'bundle.js'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),

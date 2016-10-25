@@ -1,21 +1,22 @@
 'use strict';
 
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
+const fs = require('fs');
 
-var paths = [];
+let paths = [];
 paths = paths.concat(require('node-neat').includePaths);
 paths = paths.concat(require('node-bourbon').includePaths);
-paths = paths.concat(path.join(__dirname, 'node_modules', 'aviago-core-components', 'assets', 'sass'));
-paths = paths.concat(path.join(__dirname, 'node_modules', 'react-select', 'scss'));
-paths = paths.concat(path.join(__dirname, 'node_modules', 'quill', 'dist'));
+paths.map(item => fs.realpathSync(item));
+
+const appDir = fs.realpathSync(path.resolve(__dirname, 'app'));
 
 module.exports = {
     entry: [
         './app/index.js'
     ],
     output: {
-        path: path.join(__dirname, 'assets'),
+        path: fs.realpathSync(path.join(__dirname, 'assets')),
         filename: 'bundle.js'
     },
     plugins: [
@@ -28,31 +29,25 @@ module.exports = {
         new webpack.optimize.OccurrenceOrderPlugin(true)
     ],
     resolveLoader: {
-        root: path.join(__dirname, 'node_modules')
+        root: fs.realpathSync(path.join(__dirname, 'node_modules'))
     },
     module: {
         loaders: [{
             test: /\.js$/,
             loaders: ['react-hot'],
-            include: [
-                path.resolve(__dirname, 'app')
-            ]
+            include: [appDir]
         }, {
             test: /\.js$/,
             loader: 'babel-loader',
-            include: [
-                path.resolve(__dirname, 'node_modules', 'aviago-core-components', 'app'),
-                path.resolve(__dirname, 'app')
-            ]
+            include: [appDir]
         }, {
             test: /\.js$/,
             loader: 'eslint-loader',
-            include: [
-                path.resolve(__dirname, 'app')
-            ]
+            include: [appDir]
         }, {
             test: /\.scss$/,
-            loaders: ['style', 'css', 'sass']
+            loaders: ['style', 'css', 'sass'],
+            include: [appDir]
         }]
     },
     sassLoader: {
