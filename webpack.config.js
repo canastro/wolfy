@@ -19,7 +19,7 @@ module.exports = {
         './app/index.js'
     ],
     output: {
-        path: fs.realpathSync(path.join(__dirname, 'assets')),
+        path: path.join(__dirname, 'assets'),
         filename: 'bundle.js'
     },
     plugins: [
