@@ -1,5 +1,13 @@
 import fetch from 'isomorphic-fetch';
 
+const getBaseURL = () => {
+    if (process.env.TARGET_ENV === 'production') {
+        return 'http://ec2-52-31-60-109.eu-west-1.compute.amazonaws.com:8080';
+    }
+
+    return 'http://localhost:8080';
+};
+
 /**
  * @name callApi
  * @param {object} query
@@ -9,7 +17,7 @@ import fetch from 'isomorphic-fetch';
  * given params and handle the response
  */
 function callApi(path = 'graphql', query, variables) {
-    return fetch(`http://localhost:8080/${path}`, {
+    return fetch(`${getBaseURL()}/${path}`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
