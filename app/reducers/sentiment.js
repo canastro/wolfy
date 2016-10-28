@@ -24,7 +24,7 @@ export default function sentiment(state = defaultState, action) {
                     date: moment(item.node.date).startOf('second').toDate()
                 }
             }))
-            .sort((prev, curr) => prev.date - curr.date);
+            .sort((prev, curr) => prev.node.date - curr.node.date);
 
         return {
             ...state,

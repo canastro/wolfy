@@ -34,8 +34,8 @@ export function getChart(symbol, indicator) {
 }
 
 export function getSentimentReport(symbol) {
-    const query = `query ($symbol: String!) {
-        sentimentreports (first:10, symbol: $symbol) {
+    const query = `query ($symbol: String!, $type: String!) {
+        sentimentreports (first:100, symbol: $symbol, type: $type) {
             edges {
                 node {
                     _id,
@@ -66,7 +66,8 @@ export function getSentimentReport(symbol) {
             ],
             query,
             variables: {
-                symbol
+                symbol,
+                type: 'HOURLY'
             }
         }
     });

@@ -5,22 +5,21 @@ import '!style!css!sass!./sentiment.scss';
 const tweetsSeries = [{
     field: 'tweet_relative_sentiment',
     name: 'Tweets Relative Sentiment',
-    color: '#2eb398',
     style: {
         strokeWidth: 2
     }
 }, {
     field: 'tweet_absolute_sentiment',
     name: 'Tweets Relative Sentiment',
-    color: '#ff0000',
     style: {
         strokeWidth: 2
     }
 }, {
     field: 'tweet_volume',
     name: 'Tweets Volume',
-    color: '#2ca02c',
-    area: true
+    style: {
+        strokeWidth: 2
+    }
 }];
 
 const articlesSeries = [{
@@ -44,18 +43,21 @@ export default class Sentiment extends PureComponent {
         super(props);
 
         this.state = {
-            data: []
+            tweets: [],
+            articles: []
         };
     }
 
     componentWillReceiveProps(props) {
-        const data = props.data.map(item => item.node);
-        this.setState({ data });
+        const tweets = props.data.map(item => item.node);
+        const articles = props.data
+            .filter(item => item.node.articles_volume)
+            .map(item => item.node);
+
+        this.setState({ tweets, articles });
     }
 
     _buildCharts() {
-        if (!this.state.data) { return null; }
-
         const margins = { left: 30, right: 30, top: 30, bottom: 30 };
 
         return (
@@ -66,7 +68,7 @@ export default class Sentiment extends PureComponent {
                     showYGrid
                     margins={margins}
                     title={this.props.title}
-                    data={this.state.data}
+                    data={this.state.tweets}
                     width={this.props.width}
                     height={this.props.height}
                     chartSeries={tweetsSeries}
@@ -82,7 +84,7 @@ export default class Sentiment extends PureComponent {
                     showYGrid
                     margins={margins}
                     title={this.props.title}
-                    data={this.state.data}
+                    data={this.state.articles}
                     width={this.props.width}
                     height={this.props.height}
                     chartSeries={articlesSeries}
