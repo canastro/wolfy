@@ -9,12 +9,22 @@ export const GET_ORDERS_FAILURE = 'GET_ORDERS_FAILURE';
 
 export function getOrders(symbol) {
     const query = `query ($symbol: String!) {
-        orders(symbol: $symbol) {
-            date,
-            type,
-            symbol,
-            amount,
-            value
+        orders(first:10, symbol: $symbol) {
+            edges {
+                node {
+                    _id,
+                    date,
+                    type,
+                    symbol,
+                    amount,
+                    value
+                },
+                cursor
+            }
+            pageInfo {
+                hasPreviousPage,
+                hasNextPage
+            }
         }
     }`;
 
@@ -25,7 +35,6 @@ export function getOrders(symbol) {
                 GET_ORDERS_SUCCESS,
                 GET_ORDERS_FAILURE
             ],
-            path: 'graphql',
             query,
             variables: {
                 symbol

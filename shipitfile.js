@@ -27,7 +27,13 @@ module.exports = (shipit) => {
         shipit.start('post-publish');
     });
 
-    shipit.task('post-publish', ['clear-nodemodules', 'npm-install', 'npm-link', 'build']);
+    shipit.task('post-publish', [
+        'clear-nodemodules',
+        'npm-install',
+        'npm-link',
+        'build',
+        'nginx:reload'
+    ]);
 
     // npm install
     // ----------------------------------------------------------------
@@ -43,7 +49,7 @@ module.exports = (shipit) => {
         shipit.remote(`cd ${deployToCurrent} && npm link node-sass`)
     );
 
-    shipit.task('build', () =>
+    shipit.blTask('build', () =>
         shipit.remote(`cd ${deployToCurrent} && npm run build:production`)
     );
 

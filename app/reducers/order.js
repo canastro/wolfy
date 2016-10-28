@@ -16,7 +16,7 @@ export default function order(state = defaultState, action) {
         return { ...state, isFetching: true };
 
     case GET_ORDERS_SUCCESS: {
-        const list = action.response.data.orders
+        const list = action.response.data.orders.edges
             .map(item => ({
                 ...item,
                 date: moment(item.date).startOf('second').toDate()

@@ -24,7 +24,6 @@ export function getChart(symbol, indicator) {
                 GET_CHART_SUCCESS,
                 GET_CHART_FAILURE
             ],
-            path: 'graphqlv2',
             query,
             variables: {
                 symbol,
@@ -36,15 +35,25 @@ export function getChart(symbol, indicator) {
 
 export function getSentimentReport(symbol) {
     const query = `query ($symbol: String!) {
-        sentimentreports(symbol: $symbol) {
-            symbol,
-            type,
-            date,
-            articles_sentiment,
-            articles_volume,
-            tweet_relative_sentiment,
-            tweet_absolute_sentiment,
-            tweet_volume
+        sentimentreports (first:10, symbol: $symbol) {
+            edges {
+                node {
+                    _id,
+                    symbol,
+                    type,
+                    date,
+                    articles_sentiment,
+                    articles_volume,
+                    tweet_relative_sentiment,
+                    tweet_absolute_sentiment,
+                    tweet_volume
+                },
+                cursor
+            }
+            pageInfo {
+                hasPreviousPage,
+                hasNextPage
+            }
         }
     }`;
 
@@ -55,7 +64,6 @@ export function getSentimentReport(symbol) {
                 GET_CHART_SUCCESS,
                 GET_CHART_FAILURE
             ],
-            path: 'graphql',
             query,
             variables: {
                 symbol

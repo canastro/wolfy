@@ -7,11 +7,11 @@ export default class Orders extends PureComponent {
 
         return this.props.data.map(item => (
             <tr>
-                <td>{moment(item.date).format('L HH:mm')}</td>
-                <td>{item.type}</td>
-                <td>{item.symbol}</td>
-                <td>{item.amount}</td>
-                <td>{item.value.toFixed(2)}</td>
+                <td>{moment(item.node.date).format('L HH:mm')}</td>
+                <td>{item.node.type}</td>
+                <td>{item.node.symbol}</td>
+                <td>{item.node.amount}</td>
+                <td>{item.node.value.toFixed(2)}</td>
             </tr>
         ));
     }

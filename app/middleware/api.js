@@ -16,17 +16,14 @@ const getBaseURL = () => {
  * Gets the httpInstance, makes the request to the http with the
  * given params and handle the response
  */
-function callApi(path = 'graphql', query, variables) {
+function callApi(path = 'api/graphql', query, variables) {
     return fetch(`${getBaseURL()}/${path}`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
             'content-type': 'application/json'
         },
-        body: JSON.stringify({
-            query,
-            variables
-        })
+        body: JSON.stringify({ query, variables })
     });
 }
 
