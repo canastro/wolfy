@@ -5,8 +5,7 @@ const getBaseURL = () => {
         return 'http://ec2-52-31-60-109.eu-west-1.compute.amazonaws.com:8080';
     }
 
-    // return 'http://localhost:8080';
-    return 'http://ec2-52-31-60-109.eu-west-1.compute.amazonaws.com:8080';
+    return 'http://localhost:8080';
 };
 
 /**

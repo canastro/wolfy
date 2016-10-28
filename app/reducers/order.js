@@ -7,7 +7,7 @@ import {
 
 const defaultState = {
     isFetching: false,
-    list: []
+    orders: { list: [], pageInfo: {} }
 };
 
 export default function order(state = defaultState, action) {
@@ -26,7 +26,10 @@ export default function order(state = defaultState, action) {
         return {
             ...state,
             isFetching: false,
-            list
+            orders: {
+                list,
+                pageInfo: action.response.data.orders.pageInfo
+            }
         };
     }
 

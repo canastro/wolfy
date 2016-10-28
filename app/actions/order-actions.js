@@ -7,9 +7,12 @@ export const GET_ORDERS_REQUEST = 'GET_ORDERS_REQUEST';
 export const GET_ORDERS_SUCCESS = 'GET_ORDERS_SUCCESS';
 export const GET_ORDERS_FAILURE = 'GET_ORDERS_FAILURE';
 
-export function getOrders(symbol) {
-    const query = `query ($symbol: String!) {
-        orders(first:10, symbol: $symbol) {
+export function getOrders(symbol, type = 'next', cursor) {
+    const cursorType = type === 'previous' ? 'before' : 'after';
+    const from = type === 'previous' ? 'last' : 'first';
+
+    const query = `query ($symbol: String!, $cursor: Cursor) {
+        orders(${from}:10, ${cursorType}: $cursor, symbol: $symbol) {
             edges {
                 node {
                     _id,
@@ -37,7 +40,8 @@ export function getOrders(symbol) {
             ],
             query,
             variables: {
-                symbol
+                symbol,
+                cursor
             }
         }
     });

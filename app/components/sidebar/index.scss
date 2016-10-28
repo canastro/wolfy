@@ -1,0 +1,41 @@
+@import '../../assets/palette';
+
+.sidebar-container {
+    min-width: 210px;
+    background-color: $blue-dark;
+
+
+    h4 {
+        padding: 20px;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: rgba(137,148,155,0.4);
+    }
+
+    li {
+        padding: 0 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        height: 45px;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        &.selected {
+            border-left: 5px solid $fire-brick;
+        }
+    }
+
+    .symbol {
+        font-size: 10px;
+        margin-right: 20px;
+        color: rgba(137,148,155,0.4);
+    }
+
+    .name {
+        color: rgba(137,148,155,0.4);
+    }
+
+}
