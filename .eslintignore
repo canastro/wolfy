@@ -1,4 +1,6 @@
-lib/
 dist/
 node_modules/
-server/
+server.js
+shipitfile.js
+karma.conf.js
+webpack.*

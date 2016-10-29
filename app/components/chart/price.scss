@@ -1,20 +1,16 @@
 @import '../../assets/palette';
 
-.sentiment-container {
+.price-container {
     margin-bottom: 40px;
     border-radius: 5px;
     background-color: $white;
     position: relative;
-    width: 100%;
+    width: 50%;
+    margin-left: 40px;
 
     h2 { text-align: center; }
 
     .react-d3-core__legend {
         color: #000;
-    }
-
-    .sentiment-charts-wrapper {
-        display: flex;
-        justify-content: space-around;
     }
 }

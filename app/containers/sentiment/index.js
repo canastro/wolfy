@@ -17,8 +17,7 @@ class SentimentContainer extends PureComponent {
 
 SentimentContainer.propTypes = {
     isFetching: PropTypes.bool.isRequired,
-    sentimentReports: PropTypes.array.isRequired,
-    symbol: PropTypes.string.isRequired
+    sentimentReports: PropTypes.array.isRequired
 };
 
 export default connect(state => ({

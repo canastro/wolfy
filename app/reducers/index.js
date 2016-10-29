@@ -5,13 +5,15 @@ import order from './order';
 import sentiment from './sentiment';
 import symbol from './symbol';
 import stock from './stock';
+import price from './price';
 
 const rootReducer = combineReducers({
     routing: routeReducer,
     sentiment,
     symbol,
     order,
-    stock
+    stock,
+    price
 });
 
 export default rootReducer;
