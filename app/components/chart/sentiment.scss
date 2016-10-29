@@ -1,4 +1,11 @@
+@import '../../assets/palette';
+
 .sentiment-container {
+    padding: 20px;
+    margin-bottom: 40px;
+    border-radius: 5px;
+    background-color: $white;
+
     h2 { text-align: center; }
 
     .react-d3-core__legend {

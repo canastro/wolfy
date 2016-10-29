@@ -6,8 +6,10 @@ export default class Sidebar extends PureComponent {
     _buildStocks() {
         return this.props.stocks.map(stock => (
             <li>
-                <span className="symbol">{stock.symbol}</span>
-                <strong className="name">{stock.name}</strong>
+                <a tabIndex="0" onClick={this.props.handleStockClicked(stock.symbol)}>
+                    <span className="symbol">{stock.symbol}</span>
+                    <strong className="name">{stock.name}</strong>
+                </a>
             </li>
         ));
     }
@@ -26,5 +28,6 @@ export default class Sidebar extends PureComponent {
 }
 
 Sidebar.propTypes = {
-    stocks: PropTypes.array.isRequired
+    stocks: PropTypes.array.isRequired,
+    handleStockClicked: PropTypes.func.isRequired
 };

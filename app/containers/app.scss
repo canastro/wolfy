@@ -1,10 +1,8 @@
 @import '../assets/reset';
-@import '../assets/palette';
 @import '../assets/base';
 
-.page-wrapper {
-    margin: 20px;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: $white;
+.app-wrapper {
+    display: flex;
+    height: calc(100vh - 75px);
+    overflow: hidden;
 }

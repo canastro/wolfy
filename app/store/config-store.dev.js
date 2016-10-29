@@ -1,13 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-// import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import { useRouterHistory } from 'react-router';
 import { createHistory } from 'history';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-import DevTools from '../containers/dev-tools';
 import api from '../middleware/api';
+import DevTools from '../containers/dev-tools';
 import rootReducer from '../reducers';
 
 const history = useRouterHistory(createHistory)({

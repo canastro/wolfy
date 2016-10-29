@@ -8,8 +8,6 @@ class OrdersContainer extends PureComponent {
     constructor(props) {
         super(props);
 
-        this.props.getOrders('TSLA');
-
         this.handleRequestPage = this.handleRequestPage.bind(this);
     }
 
@@ -18,7 +16,7 @@ class OrdersContainer extends PureComponent {
             const orders = this.props.orders.list;
             const cursor = type === 'next' ? orders[orders.length - 1].cursor : orders[0].cursor;
 
-            this.props.getOrders('TSLA', type, cursor);
+            this.props.getOrders(this.props.symbol, type, cursor);
         };
     }
 
@@ -31,7 +29,8 @@ class OrdersContainer extends PureComponent {
 
 OrdersContainer.propTypes = {
     getOrders: PropTypes.func.isRequired,
-    orders: PropTypes.object.isRequired
+    orders: PropTypes.object.isRequired,
+    symbol: PropTypes.string.isRequired
 };
 
 export default connect(state => ({

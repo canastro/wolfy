@@ -1,4 +1,3 @@
-import moment from 'moment';
 import {
     GET_STOCKS_REQUEST,
     GET_STOCKS_SUCCESS,

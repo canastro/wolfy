@@ -8,6 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '!style!css!sass!./app.scss';
 
 import HeaderContainer from './header/header';
+import SidebarContainer from './sidebar';
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -22,7 +23,10 @@ class App extends PureComponent {
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div className="app-container">
                     <HeaderContainer />
-                    {this.props.children}
+                    <div className="app-wrapper">
+                        <SidebarContainer />
+                        {this.props.children}
+                    </div>
                 </div>
             </MuiThemeProvider>
         );
