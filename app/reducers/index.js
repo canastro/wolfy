@@ -3,17 +3,17 @@ import { combineReducers } from 'redux';
 
 import order from './order';
 import sentiment from './sentiment';
-import symbol from './symbol';
 import stock from './stock';
 import price from './price';
+import statistics from './statistics';
 
 const rootReducer = combineReducers({
     routing: routeReducer,
     sentiment,
-    symbol,
     order,
     stock,
-    price
+    price,
+    statistics
 });
 
 export default rootReducer;

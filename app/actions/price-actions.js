@@ -9,7 +9,7 @@ export const GET_PRICES_FAILURE = 'GET_PRICES_FAILURE';
 
 export function getPrices(symbol) {
     const query = `query ($symbol: String!) {
-        prices(first:250, symbol: $symbol) {
+        prices(first:500, symbol: $symbol) {
             edges {
                 node {
                     symbol,

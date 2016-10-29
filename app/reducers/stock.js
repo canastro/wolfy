@@ -6,7 +6,8 @@ import {
 
 const defaultState = {
     isFetching: false,
-    stocks: []
+    stocks: [],
+    selected: 'DUMMY'
 };
 
 export default function stock(state = defaultState, action) {

@@ -54,7 +54,7 @@ export default class Price extends PureComponent {
 
 
                 <div className="section-content-wrapper">
-                    <h2>Prices!!</h2>
+                    <h2>Prices</h2>
 
                     {this.state.prices.length > 0 ? (
                         <Chart
