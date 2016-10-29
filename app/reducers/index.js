@@ -6,6 +6,7 @@ import sentiment from './sentiment';
 import stock from './stock';
 import price from './price';
 import statistics from './statistics';
+import tweet from './tweet';
 
 const rootReducer = combineReducers({
     routing: routeReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     order,
     stock,
     price,
-    statistics
+    statistics,
+    tweet
 });
 
 export default rootReducer;
