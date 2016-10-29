@@ -2,6 +2,8 @@ import React, { PureComponent, PropTypes } from 'react';
 import { LineTooltip, SimpleTooltip } from 'react-d3-tooltip';
 import '!style!css!sass!./sentiment.scss';
 
+import Loader from '../loader';
+
 const tweetsSeries = [{
     field: 'tweet_relative_sentiment',
     name: 'Tweets Relative Sentiment',
@@ -100,15 +102,19 @@ export default class Sentiment extends PureComponent {
     render() {
         return (
             <div className="sentiment-container">
-                <h2>{this.props.title}</h2>
+                <Loader isLoading={this.props.isFetching} />
 
-                {this._buildCharts()}
+                <div className="section-content-wrapper">
+                    <h2>{this.props.title}</h2>
+                    {this._buildCharts()}
+                </div>
             </div>
         );
     }
 }
 
 Sentiment.propTypes = {
+    isFetching: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     data: PropTypes.array,
     width: PropTypes.number.isRequired,

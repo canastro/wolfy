@@ -22,18 +22,23 @@ class OrdersContainer extends PureComponent {
 
     render() {
         return (
-            <Orders data={this.props.orders} handleRequestPage={this.handleRequestPage} />
+            <Orders
+                isFetching={this.props.isFetching}
+                data={this.props.orders}
+                handleRequestPage={this.handleRequestPage}
+            />
         );
     }
 }
 
 OrdersContainer.propTypes = {
+    isFetching: PropTypes.bool.isRequired,
     getOrders: PropTypes.func.isRequired,
     orders: PropTypes.object.isRequired,
     symbol: PropTypes.string.isRequired
 };
 
 export default connect(state => ({
-    sentimentReports: state.sentiment.list,
+    isFetching: state.order.isFetching,
     orders: state.order.orders
 }), { getOrders })(OrdersContainer);

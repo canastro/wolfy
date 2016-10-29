@@ -22,6 +22,7 @@ class SidebarContainer extends PureComponent {
     render() {
         return (
             <Sidebar
+                selectedSymbol={this.props.selectedSymbol}
                 stocks={this.props.stocks}
                 handleStockClicked={this.handleStockClicked}
             />
@@ -32,7 +33,8 @@ class SidebarContainer extends PureComponent {
 SidebarContainer.propTypes = {
     goTo: PropTypes.func.isRequired,
     getStocks: PropTypes.func.isRequired,
-    stocks: PropTypes.array.isRequired
+    stocks: PropTypes.array.isRequired,
+    selectedSymbol: PropTypes.string
 };
 
 export default connect(state => ({

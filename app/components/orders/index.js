@@ -7,6 +7,8 @@ import SkipNext from 'material-ui/svg-icons/av/skip-next';
 
 import '!style!css!sass!./index.scss';
 
+import Loader from '../loader';
+
 export default class Orders extends PureComponent {
     _buildTable() {
         if (!this.props.data.list) { return null; }
@@ -39,18 +41,23 @@ export default class Orders extends PureComponent {
     render() {
         return (
             <div className="orders-container">
-                <h2>Orders</h2>
+                <Loader isLoading={this.props.isFetching} />
 
-                <table>
-                    {this._buildTable()}
-                </table>
-                {this._buildPagination()}
+                <div className="section-content-wrapper">
+                    <h2>Orders</h2>
+
+                    <table>
+                        {this._buildTable()}
+                    </table>
+                    {this._buildPagination()}
+                </div>
             </div>
         );
     }
 }
 
 Orders.propTypes = {
+    isFetching: PropTypes.bool.isRequired,
     data: PropTypes.object.isRequired,
     handleRequestPage: PropTypes.func.isRequired
 };

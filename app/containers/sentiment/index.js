@@ -7,6 +7,7 @@ class SentimentContainer extends PureComponent {
     render() {
         return (
             <Sentiment
+                isFetching={this.props.isFetching}
                 title="Sentiment"
                 data={this.props.sentimentReports}
             />
@@ -15,10 +16,12 @@ class SentimentContainer extends PureComponent {
 }
 
 SentimentContainer.propTypes = {
+    isFetching: PropTypes.bool.isRequired,
     sentimentReports: PropTypes.array.isRequired,
     symbol: PropTypes.string.isRequired
 };
 
 export default connect(state => ({
+    isFetching: state.sentiment.isFetching,
     sentimentReports: state.sentiment.list
 }), { })(SentimentContainer);

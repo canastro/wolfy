@@ -19,12 +19,14 @@ const muiTheme = getMuiTheme({
 
 class App extends PureComponent {
     render() {
+        const params = this.props.params || {};
+
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div className="app-container">
                     <HeaderContainer />
                     <div className="app-wrapper">
-                        <SidebarContainer />
+                        <SidebarContainer selectedSymbol={params.symbol} />
                         {this.props.children}
                     </div>
                 </div>
@@ -34,7 +36,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    params: PropTypes.object
 };
 
 export default connect(() => ({}), {})(App);
