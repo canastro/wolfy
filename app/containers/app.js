@@ -26,7 +26,10 @@ class App extends PureComponent {
                 <div className="app-container">
                     <HeaderContainer />
                     <div className="app-wrapper">
-                        <SidebarContainer selectedSymbol={params.symbol} />
+                        <SidebarContainer
+                            pathname={this.props.location.pathname}
+                            selectedSymbol={params.symbol}
+                        />
                         {this.props.children}
                     </div>
                 </div>
@@ -37,7 +40,8 @@ class App extends PureComponent {
 
 App.propTypes = {
     children: PropTypes.node,
-    params: PropTypes.object
+    params: PropTypes.object,
+    location: PropTypes.object
 };
 
 export default connect(() => ({}), {})(App);

@@ -10,7 +10,7 @@ export default class Tweets extends PureComponent {
             <div className="tweets-container">
                 <Loader isLoading={this.props.isFetching} />
 
-                <div className="tweets-list">
+                <div className="app-content-wrapper tweets-list">
                     {this.props.data.list.map(item => <TweetCard {...item.node} />)}
                 </div>
             </div>

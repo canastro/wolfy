@@ -8,7 +8,15 @@ class TweetsContainer extends PureComponent {
     constructor(props) {
         super(props);
 
+        this.props.getTweets(props.params.symbol);
+
         this.handleRequestPage = this.handleRequestPage.bind(this);
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps.params.symbol !== this.props.params.symbol) {
+            this.props.getTweets(newProps.params.symbol);
+        }
     }
 
     handleRequestPage(type) {
@@ -35,7 +43,8 @@ TweetsContainer.propTypes = {
     isFetching: PropTypes.bool.isRequired,
     getTweets: PropTypes.func.isRequired,
     tweets: PropTypes.object.isRequired,
-    symbol: PropTypes.string.isRequired
+    symbol: PropTypes.string.isRequired,
+    params: PropTypes.object.isRequired
 };
 
 export default connect(state => ({

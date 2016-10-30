@@ -1,23 +1,27 @@
 import React, { PureComponent, PropTypes } from 'react';
 import '!style!css!sass!./index.scss';
 
-export default class Sidebar extends PureComponent {
-    _buildStocks() {
-        return this.props.stocks.map((stock) => {
-            const className = stock.symbol === this.props.selectedSymbol ? 'selected' : '';
+import SidebarItem from './item';
 
-            return (
-                <li className={className}>
-                    <a
-                        tabIndex="0"
-                        onClick={this.props.handleStockClicked(stock.symbol)}
-                    >
-                        <span className="symbol">{stock.symbol}</span>
-                        <strong className="name">{stock.name}</strong>
-                    </a>
-                </li>
-            );
-        });
+export default class Sidebar extends PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            selectedOption: null
+        };
+    }
+
+    _buildStocks() {
+        return this.props.stocks.map(stock =>
+            <SidebarItem
+                pathname={this.props.pathname}
+                isSelected={stock.symbol === this.props.selectedSymbol}
+                symbol={stock.symbol}
+                name={stock.name}
+                handleMenuClicked={this.props.handleMenuClicked}
+            />
+        );
     }
 
     render() {
@@ -35,6 +39,7 @@ export default class Sidebar extends PureComponent {
 
 Sidebar.propTypes = {
     selectedSymbol: PropTypes.string,
+    pathname: PropTypes.string.isRequired,
     stocks: PropTypes.array.isRequired,
-    handleStockClicked: PropTypes.func.isRequired
+    handleMenuClicked: PropTypes.func.isRequired
 };

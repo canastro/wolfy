@@ -10,21 +10,29 @@ class SidebarContainer extends PureComponent {
     constructor(props) {
         super(props);
 
-        this.handleStockClicked = this.handleStockClicked.bind(this);
+        this.handleMenuClicked = this.handleMenuClicked.bind(this);
 
         this.props.getStocks();
     }
 
-    handleStockClicked(symbol) {
-        return () => this.props.goTo(`/stock/${symbol}`);
+    handleMenuClicked(symbol, submenu) {
+        return () => {
+            let url = `/stock/${symbol}`;
+            if (submenu) {
+                url += `/${submenu}`;
+            }
+
+            return this.props.goTo(url);
+        };
     }
 
     render() {
         return (
             <Sidebar
+                pathname={this.props.pathname}
                 selectedSymbol={this.props.selectedSymbol}
                 stocks={this.props.stocks}
-                handleStockClicked={this.handleStockClicked}
+                handleMenuClicked={this.handleMenuClicked}
             />
         );
     }
@@ -34,7 +42,8 @@ SidebarContainer.propTypes = {
     goTo: PropTypes.func.isRequired,
     getStocks: PropTypes.func.isRequired,
     stocks: PropTypes.array.isRequired,
-    selectedSymbol: PropTypes.string
+    selectedSymbol: PropTypes.string,
+    pathname: PropTypes.string.isRequired
 };
 
 export default connect(state => ({
