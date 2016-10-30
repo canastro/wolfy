@@ -16,15 +16,11 @@ export default function price(state = defaultState, action) {
         return { ...state, isFetching: true };
 
     case GET_PRICES_SUCCESS: {
-        const list = action.response.data.prices.edges
+        const list = action.response.data.prices
             .map(item => ({
                 ...item,
-                node: {
-                    ...item.node,
-                    date: moment(item.node.date).startOf('second').toDate()
-                }
-            }))
-            .sort((prev, curr) => prev.node.date - curr.node.date);
+                date: moment(item.date).startOf('second').toDate()
+            }));
 
         return {
             ...state,

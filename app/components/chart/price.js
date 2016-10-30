@@ -30,19 +30,6 @@ const volumeSeries = [{
 const getX = item => item.date;
 
 export default class Price extends PureComponent {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            prices: []
-        };
-    }
-
-    componentWillReceiveProps(props) {
-        const prices = props.data.map(item => item.node);
-
-        this.setState({ prices: prices || [] });
-    }
 
     render() {
         const margins = { left: 30, right: 30, top: 30, bottom: 30 };
@@ -56,11 +43,11 @@ export default class Price extends PureComponent {
                 <div className="section-content-wrapper">
                     <h2>Prices</h2>
 
-                    {this.state.prices.length > 0 ? (
+                    {this.props.prices.length > 0 ? (
                         <Chart
                             width={this.props.width}
                             height={this.props.height}
-                            data={this.state.prices}
+                            data={this.props.prices}
                             chartSeries={series}
                             margins={margins}
                             x={getX}
@@ -85,7 +72,7 @@ export default class Price extends PureComponent {
 
 Price.propTypes = {
     isFetching: PropTypes.bool.isRequired,
-    data: PropTypes.array,
+    prices: PropTypes.array,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired
 };

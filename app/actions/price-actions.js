@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { CALL_API } from '../middleware/api';
 
 /*
@@ -8,26 +9,20 @@ export const GET_PRICES_SUCCESS = 'GET_PRICES_SUCCESS';
 export const GET_PRICES_FAILURE = 'GET_PRICES_FAILURE';
 
 export function getPrices(symbol) {
-    const query = `query ($symbol: String!) {
-        prices(first:500, symbol: $symbol) {
-            edges {
-                node {
-                    symbol,
-                    date,
-                    high,
-                    low,
-                    open,
-                    last,
-                    volume
-                },
-                cursor
-            }
-            pageInfo {
-                hasPreviousPage,
-                hasNextPage
-            }
+    const query = `query ($symbol: String!, $since: String!) {
+        prices(since:$since, symbol: $symbol) {
+            symbol,
+            date,
+            high,
+            low,
+            open,
+            last,
+            volume
         }
     }`;
+
+    const since = moment().subtract(7, 'days').startOf('day').toDate()
+        .getTime();
 
     return dispatch => dispatch({
         [CALL_API]: {
@@ -38,7 +33,8 @@ export function getPrices(symbol) {
             ],
             query,
             variables: {
-                symbol
+                symbol,
+                since
             }
         }
     });

@@ -19,13 +19,9 @@ class TweetsContainer extends PureComponent {
         }
     }
 
-    handleRequestPage(type) {
-        return () => {
-            const tweets = this.props.tweets.list;
-            const cursor = type === 'next' ? tweets[tweets.length - 1].cursor : tweets[0].cursor;
-
-            this.props.getTweets(this.props.symbol, type, cursor);
-        };
+    handleRequestPage() {
+        const tweets = this.props.tweets.list;
+        this.props.getTweets(this.props.params.symbol, tweets[tweets.length - 1].cursor);
     }
 
     render() {
@@ -43,7 +39,6 @@ TweetsContainer.propTypes = {
     isFetching: PropTypes.bool.isRequired,
     getTweets: PropTypes.func.isRequired,
     tweets: PropTypes.object.isRequired,
-    symbol: PropTypes.string.isRequired,
     params: PropTypes.object.isRequired
 };
 

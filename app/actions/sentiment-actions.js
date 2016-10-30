@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { CALL_API } from '../middleware/api';
 
 /*
@@ -34,28 +35,22 @@ export function getChart(symbol, indicator) {
 }
 
 export function getSentimentReport(symbol) {
-    const query = `query ($symbol: String!, $type: String!) {
-        sentimentreports (first:100, symbol: $symbol, type: $type) {
-            edges {
-                node {
-                    _id,
-                    symbol,
-                    type,
-                    date,
-                    articles_sentiment,
-                    articles_volume,
-                    tweet_relative_sentiment,
-                    tweet_absolute_sentiment,
-                    tweet_volume
-                },
-                cursor
-            }
-            pageInfo {
-                hasPreviousPage,
-                hasNextPage
-            }
+    const query = `query ($symbol: String!, $since: String!, $type: String!) {
+        sentimentreports(since:$since, symbol: $symbol, type: $type) {
+            _id,
+            symbol,
+            type,
+            date,
+            articles_sentiment,
+            articles_volume,
+            tweet_relative_sentiment,
+            tweet_absolute_sentiment,
+            tweet_volume
         }
     }`;
+
+    const since = moment().subtract(7, 'days').startOf('day').toDate()
+        .getTime();
 
     return dispatch => dispatch({
         [CALL_API]: {
@@ -67,7 +62,8 @@ export function getSentimentReport(symbol) {
             query,
             variables: {
                 symbol,
-                type: 'HOURLY'
+                type: 'HOURLY',
+                since
             }
         }
     });

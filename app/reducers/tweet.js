@@ -2,6 +2,7 @@ import moment from 'moment';
 import {
     GET_TWEETS_REQUEST,
     GET_TWEETS_SUCCESS,
+    GET_MORE_TWEETS_SUCCESS,
     GET_TWEETS_FAILURE
 } from '../actions/tweet-actions';
 
@@ -15,21 +16,27 @@ export default function tweet(state = defaultState, action) {
     case GET_TWEETS_REQUEST:
         return { ...state, isFetching: true };
 
+    case GET_MORE_TWEETS_SUCCESS:
     case GET_TWEETS_SUCCESS: {
         const list = action.response.data.tweets.edges
             .map(item => ({
                 ...item,
                 date: moment(item.date).startOf('second').toDate()
-            }))
-            .sort((prev, curr) => prev.date - curr.date);
+            }));
+
+        const tweets = {
+            list,
+            pageInfo: action.response.data.tweets.pageInfo
+        };
+
+        if (action.type === GET_MORE_TWEETS_SUCCESS) {
+            tweets.list = [...state.tweets.list, ...list];
+        }
 
         return {
             ...state,
             isFetching: false,
-            tweets: {
-                list,
-                pageInfo: action.response.data.tweets.pageInfo
-            }
+            tweets
         };
     }
 

@@ -41,25 +41,8 @@ const articlesSeries = [{
 const getX = item => item.date;
 
 export default class Sentiment extends PureComponent {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            tweets: [],
-            articles: []
-        };
-    }
-
-    componentWillReceiveProps(props) {
-        const tweets = props.data.map(item => item.node);
-        const articles = props.data
-            .filter(item => item.node.articles_volume)
-            .map(item => item.node);
-
-        this.setState({ tweets, articles });
-    }
-
     _buildCharts() {
+        const articles = this.props.data.filter(item => item.articles_volume);
         const margins = { left: 30, right: 30, top: 30, bottom: 30 };
 
         return (
@@ -70,7 +53,7 @@ export default class Sentiment extends PureComponent {
                     showYGrid
                     margins={margins}
                     title={this.props.title}
-                    data={this.state.tweets}
+                    data={this.props.data}
                     width={this.props.width}
                     height={this.props.height}
                     chartSeries={tweetsSeries}
@@ -86,7 +69,7 @@ export default class Sentiment extends PureComponent {
                     showYGrid
                     margins={margins}
                     title={this.props.title}
-                    data={this.state.articles}
+                    data={articles}
                     width={this.props.width}
                     height={this.props.height}
                     chartSeries={articlesSeries}

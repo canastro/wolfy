@@ -16,15 +16,11 @@ export default function sentiment(state = defaultState, action) {
         return { ...state, isFetching: true };
 
     case GET_CHART_SUCCESS: {
-        const list = action.response.data.sentimentreports.edges
+        const list = action.response.data.sentimentreports
             .map(item => ({
                 ...item,
-                node: {
-                    ...item.node,
-                    date: moment(item.node.date).startOf('second').toDate()
-                }
-            }))
-            .sort((prev, curr) => prev.node.date - curr.node.date);
+                date: moment(item.date).startOf('second').toDate()
+            }));
 
         return {
             ...state,

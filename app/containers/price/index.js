@@ -8,7 +8,7 @@ class PriceContainer extends PureComponent {
         return (
             <Price
                 isFetching={this.props.isFetching}
-                data={this.props.prices}
+                prices={this.props.prices}
             />
         );
     }

@@ -5,12 +5,30 @@ import Loader from '../loader';
 import TweetCard from './card';
 
 export default class Tweets extends PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.handleScroll = this.handleScroll.bind(this);
+    }
+
+    handleScroll() {
+        const node = this.tweetsListNode;
+
+        if (node.scrollHeight < node.scrollTop + node.clientHeight) {
+            this.props.handleRequestPage();
+        }
+    }
+
     render() {
         return (
             <div className="tweets-container">
                 <Loader isLoading={this.props.isFetching} />
 
-                <div className="app-content-wrapper tweets-list">
+                <div
+                    ref={(n) => { this.tweetsListNode = n; }}
+                    className="app-content-wrapper tweets-list"
+                    onScroll={this.handleScroll}
+                >
                     {this.props.data.list.map(item => <TweetCard {...item.node} />)}
                 </div>
             </div>
