@@ -12,7 +12,7 @@ export function getTweets(symbol, type = 'next', cursor) {
     const from = type === 'previous' ? 'last' : 'first';
 
     const query = `query ($symbol: String!, $cursor: Cursor) {
-        tweets(${from}:10, ${cursorType}: $cursor, symbol: $symbol) {
+        tweets(${from}:30, ${cursorType}: $cursor, symbol: $symbol) {
             edges {
                 node {
                     _id,

@@ -12,5 +12,5 @@ export default class Header extends PureComponent {
 }
 
 Header.propTypes = {
-    symbol: PropTypes.func.isRequired
+    symbol: PropTypes.string.isRequired
 };

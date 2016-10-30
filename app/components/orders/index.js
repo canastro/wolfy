@@ -11,15 +11,15 @@ import Loader from '../loader';
 
 export default class Orders extends PureComponent {
     _buildTable() {
-        if (!this.props.data.list) { return null; }
+        if (!this.props.orders.list) { return null; }
 
-        return this.props.data.list.map(item => (
+        return this.props.orders.list.map(item => (
             <tr>
                 <td>{moment(item.node.date).format('L HH:mm')}</td>
                 <td>{item.node.type}</td>
                 <td>{item.node.symbol}</td>
                 <td>{item.node.amount}</td>
-                <td>{item.node.value.toFixed(2)}</td>
+                <td>${item.node.value.toFixed(2)}</td>
             </tr>
         ));
     }
@@ -47,7 +47,9 @@ export default class Orders extends PureComponent {
                     <h2>Orders</h2>
 
                     <table>
-                        {this._buildTable()}
+                        <tbody>
+                            {this._buildTable()}
+                        </tbody>
                     </table>
                     {this._buildPagination()}
                 </div>
@@ -58,6 +60,6 @@ export default class Orders extends PureComponent {
 
 Orders.propTypes = {
     isFetching: PropTypes.bool.isRequired,
-    data: PropTypes.object.isRequired,
+    orders: PropTypes.object.isRequired,
     handleRequestPage: PropTypes.func.isRequired
 };

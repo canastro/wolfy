@@ -6,12 +6,20 @@ import '!style!css!sass!./card.scss';
 export default class TweetCard extends PureComponent {
     render() {
         const date = moment(this.props.date).format('L HH:mm');
+
+        let footerClassName = 'gold';
+        if (this.props.absolute_sentiment > 0) {
+            footerClassName = 'green';
+        } else if (this.props.absolute_sentiment < 0) {
+            footerClassName = 'red';
+        }
+
         return (
             <div className="tweet-card-container">
                 <header>
                     <div className="tweet-id">
                         <strong>{this.props.screen_name} </strong>
-                        <span>({this.props.followers_count})</span>
+                        <span>(followers: {this.props.followers_count})</span>
                     </div>
 
                     <div className="tweet-date">{date}</div>
@@ -19,7 +27,7 @@ export default class TweetCard extends PureComponent {
 
                 <article>{this.props.text}</article>
 
-                <footer>
+                <footer className={footerClassName}>
                     <div className="tweet-sentiment">
                         <strong>Absolute: </strong>
                         <span>{this.props.absolute_sentiment}</span>

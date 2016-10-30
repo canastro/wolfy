@@ -37,11 +37,22 @@
         padding: 5px 20px;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
-        background-color: $teal;
 
         strong {
-
             text-transform: uppercase;
+        }
+
+        &.red {
+            background-color: $red;
+        }
+
+        &.green {
+            background-color: $green;
+        }
+
+        &.gold {
+            color: $black;
+            background-color: $gold;
         }
     }
 }

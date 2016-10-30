@@ -4,6 +4,7 @@
     width: 100%;
     margin-bottom: 20px;
     position: relative;
+    overflow: auto;
 
     h2 {
         text-align: center;
@@ -12,5 +13,6 @@
     .tweets-list {
         display: flex;
         flex-wrap: wrap;
+        width: calc(100% - 60px);
     }
 }

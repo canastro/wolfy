@@ -24,7 +24,7 @@ class OrdersContainer extends PureComponent {
         return (
             <Orders
                 isFetching={this.props.isFetching}
-                data={this.props.orders}
+                orders={this.props.orders}
                 handleRequestPage={this.handleRequestPage}
             />
         );
