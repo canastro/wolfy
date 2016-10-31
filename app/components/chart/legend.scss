@@ -1,0 +1,17 @@
+.legend-container {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+    flex-wrap: wrap;
+
+    .legend-item {
+        display: flex;
+    }
+
+    .legend-color {
+        height: 20px;
+        width: 20px;
+        margin-right: 10px;
+    }
+}

@@ -38,14 +38,13 @@ class StockContainer extends PureComponent {
         return (
             <section className="app-content-wrapper stock-container">
                 <StatisticsContainer symbol={symbol} />
+                <PriceContainer symbol={symbol} />
                 <SentimentContainer symbol={symbol} />
 
                 <div className="stock-dashboard-row">
                     <OrdersContainer symbol={symbol} />
                     <PositionsContainer symbol={symbol} />
                 </div>
-
-                <PriceContainer symbol={symbol} />
             </section>
         );
     }

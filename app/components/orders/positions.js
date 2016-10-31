@@ -23,7 +23,7 @@ export default class Positions extends PureComponent {
                 <Loader isLoading={this.props.isFetching} />
 
                 <div className="section-content-wrapper">
-                    <h2>Positions</h2>
+                    <h2>Open Positions</h2>
 
                     <table>
                         <tbody>

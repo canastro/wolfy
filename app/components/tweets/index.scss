@@ -9,12 +9,15 @@
         text-align: center;
     }
 
+    .app-content-wrapper {
+        overflow: auto;
+        width: calc(100% - 60px);
+        height: calc(100% - 60px);
+    }
+
     .tweets-list {
         display: flex;
         flex-wrap: wrap;
-        width: calc(100% - 60px);
-        height: calc(100% - 60px);
-        overflow: auto;
     }
 
     .tweets-infinite-wrapper > div {
