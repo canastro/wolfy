@@ -9,12 +9,17 @@
 
     h2 { text-align: center; }
 
-    .react-d3-core__legend {
-        color: #000;
-    }
-
     .sentiment-charts-wrapper {
         display: flex;
         justify-content: space-around;
+    }
+
+    .sentiment-chart {
+        width: 50%;
+
+        h3 {
+            text-align: center;
+            color: #000;
+        }
     }
 }
