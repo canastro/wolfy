@@ -6,12 +6,14 @@ import { getStatistics } from '../../actions/statistics-actions';
 import { getOrders, getOpenPositions } from '../../actions/order-actions';
 import { getSentimentReport } from '../../actions/sentiment-actions';
 import { getPrices } from '../../actions/price-actions';
+import { getNetworkOutputs } from '../../actions/network-output-actions';
 
 import StatisticsContainer from '../statistics';
 import PriceContainer from '../price';
 import SentimentContainer from '../sentiment';
 import OrdersContainer from '../orders';
 import PositionsContainer from '../positions';
+import NetworkOutputContainer from '../network-output';
 
 class StockContainer extends PureComponent {
     constructor(props) {
@@ -22,6 +24,7 @@ class StockContainer extends PureComponent {
         this.props.getSentimentReport(props.params.symbol);
         this.props.getPrices(props.params.symbol);
         this.props.getStatistics(props.params.symbol);
+        this.props.getNetworkOutputs(props.params.symbol);
     }
 
     componentWillReceiveProps(newProps) {
@@ -30,6 +33,7 @@ class StockContainer extends PureComponent {
         this.props.getSentimentReport(newProps.params.symbol);
         this.props.getPrices(newProps.params.symbol);
         this.props.getStatistics(newProps.params.symbol);
+        this.props.getNetworkOutputs(newProps.params.symbol);
     }
 
     render() {
@@ -40,6 +44,7 @@ class StockContainer extends PureComponent {
                 <StatisticsContainer symbol={symbol} />
                 <PriceContainer symbol={symbol} />
                 <SentimentContainer symbol={symbol} />
+                <NetworkOutputContainer />
 
                 <div className="stock-dashboard-row">
                     <OrdersContainer symbol={symbol} />
@@ -56,6 +61,7 @@ StockContainer.propTypes = {
     getOrders: PropTypes.func.isRequired,
     getSentimentReport: PropTypes.func.isRequired,
     getStatistics: PropTypes.func.isRequired,
+    getNetworkOutputs: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired
 };
 
@@ -64,5 +70,6 @@ export default connect(() => ({}), {
     getOpenPositions,
     getPrices,
     getSentimentReport,
-    getStatistics
+    getStatistics,
+    getNetworkOutputs
 })(StockContainer);

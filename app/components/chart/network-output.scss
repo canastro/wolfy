@@ -1,0 +1,15 @@
+@import '../../assets/palette';
+
+.network-output-container {
+    margin-bottom: 40px;
+    border-radius: 5px;
+    background-color: $white;
+    position: relative;
+    width: 100%;
+
+    h2 { text-align: center; }
+
+    .react-d3-core__legend {
+        color: #000;
+    }
+}

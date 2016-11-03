@@ -33,7 +33,7 @@ class Price extends PureComponent {
                 ratio={this.props.ratio}
                 width={this.props.width}
                 height={400}
-                margin={{ left: 50, right: 50, top: 10, bottom: 30 }}
+                margin={{ left: 75, right: 75, top: 10, bottom: 30 }}
                 type="svg"
                 seriesName="MSFT"
                 data={data}

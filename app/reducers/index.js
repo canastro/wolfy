@@ -7,6 +7,7 @@ import stock from './stock';
 import price from './price';
 import statistics from './statistics';
 import tweet from './tweet';
+import networkOutput from './network-output';
 
 const rootReducer = combineReducers({
     routing: routeReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     stock,
     price,
     statistics,
-    tweet
+    tweet,
+    networkOutput
 });
 
 export default rootReducer;
