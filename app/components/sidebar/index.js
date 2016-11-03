@@ -25,8 +25,14 @@ export default class Sidebar extends PureComponent {
     }
 
     render() {
+        const classNames = ['sidebar-container'];
+
+        if (this.props.isExpanded) {
+            classNames.push('is-expanded');
+        }
+
         return (
-            <div className="sidebar-container">
+            <div className={classNames.join(' ')}>
                 <h4>Stocks</h4>
 
                 <ul>
@@ -38,6 +44,7 @@ export default class Sidebar extends PureComponent {
 }
 
 Sidebar.propTypes = {
+    isExpanded: PropTypes.bool.isRequired,
     selectedSymbol: PropTypes.string,
     pathname: PropTypes.string.isRequired,
     stocks: PropTypes.array.isRequired,

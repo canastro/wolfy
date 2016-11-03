@@ -7,6 +7,7 @@ import { getOrders, getOpenPositions } from '../../actions/order-actions';
 import { getSentimentReport } from '../../actions/sentiment-actions';
 import { getPrices } from '../../actions/price-actions';
 import { getNetworkOutputs } from '../../actions/network-output-actions';
+import { getRatings } from '../../actions/rating-actions';
 
 import StatisticsContainer from '../statistics';
 import PriceContainer from '../price';
@@ -14,6 +15,7 @@ import SentimentContainer from '../sentiment';
 import OrdersContainer from '../orders';
 import PositionsContainer from '../positions';
 import NetworkOutputContainer from '../network-output';
+import RatingContainer from '../rating';
 
 class StockContainer extends PureComponent {
     constructor(props) {
@@ -25,6 +27,7 @@ class StockContainer extends PureComponent {
         this.props.getPrices(props.params.symbol);
         this.props.getStatistics(props.params.symbol);
         this.props.getNetworkOutputs(props.params.symbol);
+        this.props.getRatings(props.params.symbol);
     }
 
     componentWillReceiveProps(newProps) {
@@ -34,23 +37,29 @@ class StockContainer extends PureComponent {
         this.props.getPrices(newProps.params.symbol);
         this.props.getStatistics(newProps.params.symbol);
         this.props.getNetworkOutputs(newProps.params.symbol);
+        this.props.getRatings(newProps.params.symbol);
     }
 
     render() {
         const symbol = this.props.params.symbol;
 
         return (
-            <section className="app-content-wrapper stock-container">
+            <div className="stock-container">
                 <StatisticsContainer symbol={symbol} />
                 <PriceContainer symbol={symbol} />
-                <SentimentContainer symbol={symbol} />
+
+                <div className="stock-price-row">
+                    <SentimentContainer symbol={symbol} />
+                    <RatingContainer />
+                </div>
+
                 <NetworkOutputContainer />
 
                 <div className="stock-dashboard-row">
                     <OrdersContainer symbol={symbol} />
                     <PositionsContainer symbol={symbol} />
                 </div>
-            </section>
+            </div>
         );
     }
 }
@@ -62,6 +71,7 @@ StockContainer.propTypes = {
     getSentimentReport: PropTypes.func.isRequired,
     getStatistics: PropTypes.func.isRequired,
     getNetworkOutputs: PropTypes.func.isRequired,
+    getRatings: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired
 };
 
@@ -71,5 +81,6 @@ export default connect(() => ({}), {
     getPrices,
     getSentimentReport,
     getStatistics,
-    getNetworkOutputs
+    getNetworkOutputs,
+    getRatings
 })(StockContainer);

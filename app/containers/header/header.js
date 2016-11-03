@@ -1,22 +1,22 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import { toggleSideBar } from '../../actions/navigation-actions';
+
 import Header from '../../components/header/header';
 
 class HeaderContainer extends PureComponent {
     render() {
         return (
             <Header
-                symbol={this.props.symbol}
+                handleMenuClicked={this.props.toggleSideBar}
             />
         );
     }
 }
 
 HeaderContainer.propTypes = {
-    symbol: PropTypes.string
+    toggleSideBar: PropTypes.func.isRequired
 };
 
-export default connect(state => ({
-    symbol: state.stock.selected
-}), {})(HeaderContainer);
+export default connect(() => ({}), { toggleSideBar })(HeaderContainer);

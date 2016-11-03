@@ -1,5 +1,7 @@
 import { browserHistory } from 'react-router';
 
+export const TOGGLE_SIDE_BAR = 'TOGGLE_SIDE_BAR';
+
 /**
  * @name goTo
  * @param {string} url
@@ -7,4 +9,8 @@ import { browserHistory } from 'react-router';
  */
 export function goTo(url) {
     return () => browserHistory.push(url);
+}
+
+export function toggleSideBar() {
+    return dispatch => dispatch({ type: TOGGLE_SIDE_BAR });
 }

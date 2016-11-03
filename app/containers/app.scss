@@ -5,4 +5,15 @@
     display: flex;
     height: calc(100vh - 75px);
     overflow: hidden;
+
+    >.app-content-wrapper {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: auto;
+
+        &.is-sidebar-expanded {
+            left: 210px;
+        }
+    }
 }

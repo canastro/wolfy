@@ -12,6 +12,7 @@ body {
     background-color: $blue-light;
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
 }
 
 a {
@@ -24,6 +25,7 @@ a {
     padding: 20px;
     overflow: auto;
     width: 100%;
+    height: calc(100% - 165px);
 }
 
 .section-content-wrapper {

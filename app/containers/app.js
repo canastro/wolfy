@@ -20,6 +20,11 @@ const muiTheme = getMuiTheme({
 class App extends PureComponent {
     render() {
         const params = this.props.params || {};
+        const classNames = ['app-content-wrapper'];
+
+        if (this.props.isExpanded) {
+            classNames.push('is-sidebar-expanded');
+        }
 
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
@@ -30,7 +35,10 @@ class App extends PureComponent {
                             pathname={this.props.location.pathname}
                             selectedSymbol={params.symbol}
                         />
-                        {this.props.children}
+
+                        <section className={classNames.join(' ')}>
+                            {this.props.children}
+                        </section>
                     </div>
                 </div>
             </MuiThemeProvider>
@@ -39,9 +47,12 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+    isExpanded: PropTypes.bool.isRequired,
     children: PropTypes.node,
     params: PropTypes.object,
     location: PropTypes.object
 };
 
-export default connect(() => ({}), {})(App);
+export default connect(state => ({
+    isExpanded: state.sideBar.isExpanded
+}), {})(App);

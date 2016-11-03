@@ -8,6 +8,8 @@ import price from './price';
 import statistics from './statistics';
 import tweet from './tweet';
 import networkOutput from './network-output';
+import rating from './rating';
+import sideBar from './side-bar';
 
 const rootReducer = combineReducers({
     routing: routeReducer,
@@ -17,7 +19,9 @@ const rootReducer = combineReducers({
     price,
     statistics,
     tweet,
-    networkOutput
+    networkOutput,
+    rating,
+    sideBar
 });
 
 export default rootReducer;

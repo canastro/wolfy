@@ -1,0 +1,31 @@
+@import '../../assets/palette';
+
+.ratings-container {
+    margin-left: 40px;
+    margin-bottom: 40px;
+    border-radius: 5px;
+    background-color: $white;
+    position: relative;
+    width: 400px;
+
+    h2 {
+        text-align: center;
+    }
+
+    li {
+        display: flex;
+        height: 40px;
+        padding: 10px 0;
+    }
+
+    .rating-title-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+    }
+
+    .rating-value {
+        display: flex;
+        align-items: center;
+    }
+}

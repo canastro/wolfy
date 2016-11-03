@@ -1,9 +1,16 @@
 @import '../../assets/palette';
 
 .sidebar-container {
+    position: absolute;
+    top: 75px;
+    bottom: 0;
+    left: -210px;
     min-width: 210px;
     background-color: $blue-dark;
 
+    &.is-expanded {
+        left: 0;
+    }
 
     h4 {
         padding: 20px;
