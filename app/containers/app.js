@@ -54,5 +54,5 @@ App.propTypes = {
 };
 
 export default connect(state => ({
-    isExpanded: state.sideBar.isExpanded
+    isExpanded: state.sidebar.isExpanded
 }), {})(App);

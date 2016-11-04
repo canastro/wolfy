@@ -50,5 +50,5 @@ SidebarContainer.propTypes = {
 
 export default connect(state => ({
     stocks: state.stock.stocks,
-    isExpanded: state.sideBar.isExpanded
+    isExpanded: state.sidebar.isExpanded
 }), { goTo, getStocks })(SidebarContainer);

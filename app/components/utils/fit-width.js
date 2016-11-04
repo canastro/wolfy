@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 
 function getDisplayName(Series) {
     const name = Series.displayName || Series.name || 'Series';
@@ -7,9 +8,10 @@ function getDisplayName(Series) {
 }
 
 export default function fitWidth(WrappedComponent, withRef = true, minWidth = 100) {
-    class ResponsiveComponent extends Component {
+    class ResponsiveComponent extends PureComponent {
         constructor(props) {
             super(props);
+
             this.handleWindowResize = this.handleWindowResize.bind(this);
             this.getWrappedInstance = this.getWrappedInstance.bind(this);
             this.saveNode = this.saveNode.bind(this);
@@ -28,6 +30,10 @@ export default function fitWidth(WrappedComponent, withRef = true, minWidth = 10
                 ratio: this.getRatio()
             });
             /* eslint-enable react/no-did-mount-set-state */
+        }
+
+        componentWillReceiveProps() {
+            this.handleWindowResize();
         }
 
         componentWillUnmount() {
@@ -100,7 +106,14 @@ export default function fitWidth(WrappedComponent, withRef = true, minWidth = 10
         }
     }
 
+    ResponsiveComponent.propTypes = {
+        isFetching: PropTypes.bool.isRequired,
+        outputs: PropTypes.array.isRequired
+    };
+
     ResponsiveComponent.displayName = `fitWidth(${getDisplayName(WrappedComponent)})`;
 
-    return ResponsiveComponent;
+    return connect(state => ({
+        isExpanded: state.sidebar.isExpanded
+    }), { })(ResponsiveComponent);
 }

@@ -31,6 +31,10 @@ class StockContainer extends PureComponent {
     }
 
     componentWillReceiveProps(newProps) {
+        if (this.props.params.symbol === newProps.params.symbol) {
+            return null;
+        }
+
         this.props.getOrders(newProps.params.symbol);
         this.props.getOpenPositions(newProps.params.symbol);
         this.props.getSentimentReport(newProps.params.symbol);
@@ -38,6 +42,7 @@ class StockContainer extends PureComponent {
         this.props.getStatistics(newProps.params.symbol);
         this.props.getNetworkOutputs(newProps.params.symbol);
         this.props.getRatings(newProps.params.symbol);
+        return null;
     }
 
     render() {

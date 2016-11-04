@@ -21,19 +21,19 @@ export default class Tweets extends PureComponent {
 
     render() {
         return (
-            <div className="tweets-container">
+            <div
+                className="tweets-container"
+            >
+                <h2>Tweets</h2>
                 <Loader isLoading={this.props.isFetching} />
 
                 <div
+                    className="tweets-list"
                     ref={(n) => { this.tweetsListNode = n; }}
-                    className="app-content-wrapper"
                     onScroll={this.handleScroll}
                 >
-                    <h2>Tweets</h2>
 
-                    <div className="tweets-list">
-                        {this.props.data.list.map(item => <TweetCard {...item.node} />)}
-                    </div>
+                    {this.props.data.list.map(item => <TweetCard {...item.node} />)}
                 </div>
             </div>
         );
