@@ -6,9 +6,12 @@ import HomeContainer from './containers/home/home';
 import StockContainer from './containers/stock';
 import TweetContainer from './containers/tweet';
 
+import AboutPage from './components/pages/about';
+
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={HomeContainer} />
+        <Route path="/about" component={AboutPage} />
         <Route path="/stock/:symbol" component={StockContainer} />
         <Route path="/stock/:symbol/tweets" component={TweetContainer} />
     </Route>

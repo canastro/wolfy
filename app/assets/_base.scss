@@ -5,7 +5,7 @@
 @import "./mixins";
 
 body {
-    @include type-setting(0);
+    @include type-setting(-1);
 
     font-family: $base-font-family;
     font-weight: 300;
@@ -21,12 +21,12 @@ a {
 }
 
 .app-content-wrapper {
-    margin: 20px;
-    padding: 20px;
+    margin: 10px;
+    padding: 10px;
     width: 100%;
     height: calc(100% - 165px);
 }
 
 .section-content-wrapper {
-    padding: 20px;
+    padding: 10px;
 }

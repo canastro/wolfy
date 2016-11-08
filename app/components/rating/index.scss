@@ -1,8 +1,8 @@
 @import '../../assets/palette';
 
 .ratings-container {
-    margin-left: 40px;
-    margin-bottom: 40px;
+    margin-left: 20px;
+    margin-bottom: 20px;
     border-radius: 5px;
     background-color: $white;
     position: relative;
@@ -15,7 +15,7 @@
     li {
         display: flex;
         height: 40px;
-        padding: 10px 0;
+        padding: 5px 0;
     }
 
     .rating-title-wrapper {

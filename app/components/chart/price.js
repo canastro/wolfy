@@ -1,5 +1,3 @@
-// https://reactjsnews.com/playing-with-react-and-d3
-
 import React, { PureComponent, PropTypes } from 'react';
 import { timeFormat } from 'd3-time-format';
 import { format } from 'd3-format';

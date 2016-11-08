@@ -32,7 +32,7 @@ export default class Sidebar extends PureComponent {
                 symbol={stock.symbol}
                 handleMenuClicked={this.props.handleMenuClicked}
             >
-                <span className="symbol">{stock.symbol}</span>
+                <small className="symbol">{stock.symbol}</small>
                 <strong className="name">{stock.name}</strong>
             </SidebarStock>
         ));

@@ -1,0 +1,42 @@
+@import '../../assets/palette';
+
+.about-container {
+    height: 100%;
+    overflow: auto;
+    font-size: 14px;
+
+    .about-content-container {
+        border-radius: 5px;
+        background-color: $white;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .about-content {
+        display: flex;
+    }
+
+    p, ul {
+        margin-bottom: 20px;
+    }
+
+    ul {
+        list-style-type: disc;
+
+        li {
+            margin-left: 20px;
+            display: list-item;
+            list-style-type: disc;
+        }
+    }
+
+    .poster-image {
+        height: 300px;
+        margin-right: 20px;
+    }
+
+    .architecture-image {
+        width: 100%;
+        max-width: 500px;
+    }
+}
