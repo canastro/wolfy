@@ -17,6 +17,24 @@ export default class Positions extends PureComponent {
         ));
     }
 
+    _buildContent() {
+        if (this.props.positions && this.props.positions.length) {
+            return (
+                <table>
+                    <tbody>
+                        {this._buildTable()}
+                    </tbody>
+                </table>
+            );
+        }
+
+        return (
+            <div className="positions-empty">
+                <h1>No Positions Open</h1>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div className="positions-container">
@@ -25,11 +43,7 @@ export default class Positions extends PureComponent {
                 <div className="section-content-wrapper">
                     <h2>Open Positions</h2>
 
-                    <table>
-                        <tbody>
-                            {this._buildTable()}
-                        </tbody>
-                    </table>
+                    {this._buildContent()}
                 </div>
             </div>
         );
@@ -38,5 +52,5 @@ export default class Positions extends PureComponent {
 
 Positions.propTypes = {
     isFetching: PropTypes.bool.isRequired,
-    positions: PropTypes.object.isRequired
+    positions: PropTypes.array.isRequired
 };

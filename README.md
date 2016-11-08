@@ -2,6 +2,7 @@
 Wolfy Inspector is the frontend for the Wolfy project
 
 ## To Do
+* Add perf tools to count re-renders
 * Show Articles
 * JWT Authentication - user and admin
 * Add legend next to the prices chart with some indicators that can be toggled (?)
@@ -10,7 +11,6 @@ Wolfy Inspector is the frontend for the Wolfy project
     * Show statistics
     * Show open positions
     * Show stocks (add, remove, enable/disable, reset)
-* Remove zoom from charts
 * Nginx Http2
 * Sockets
 

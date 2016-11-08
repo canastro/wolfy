@@ -12,27 +12,36 @@ const { XAxis, YAxis } = axes;
 const { MouseCoordinateX, MouseCoordinateY } = coordinates;
 
 const legends = [{
+    key: 'volume',
     label: 'Volume',
     color: '#ccc'
 }, {
+    key: 'sentiment',
     label: 'Sentiment',
     color: '#2eb398'
 }];
 
-class TweetSentiment extends PureComponent {
-    render() {
+class ArticleSentiment extends PureComponent {
+    buildChart() {
+        if (!this.props.data || this.props.data.length === 0) {
+            return null;
+        }
+
         return (
-            <div className="sentiment-chart-container">
+            <div className="sentiment-chart-wrapper">
                 <ChartCanvas
                     ratio={this.props.ratio}
                     width={this.props.width}
                     height={400}
                     margin={{ left: 50, right: 50, top: 10, bottom: 30 }}
                     type="svg"
-                    seriesName="MSFT"
+                    seriesName="ARTICLE-SENTIMENT"
                     data={this.props.data}
                     xAccessor={d => d.date}
                     xScaleProvider={scale.discontinuousTimeScaleProvider}
+                    disableMouseMoveEvent
+                    disablePanEvent
+                    disableZoomEvent
                 >
 
                     <Chart id={1} yExtents={d => d.articles_volume}>
@@ -82,18 +91,23 @@ class TweetSentiment extends PureComponent {
             </div>
         );
     }
+    render() {
+        return (
+            <div className="sentiment-chart-container">
+                {this.buildChart()}
+            </div>
+        );
+    }
 }
 
-TweetSentiment.propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
+ArticleSentiment.propTypes = {
     data: PropTypes.array,
     width: PropTypes.number.isRequired,
     ratio: PropTypes.number.isRequired
 };
 
-TweetSentiment.defaultProps = {
+ArticleSentiment.defaultProps = {
     width: 600
 };
 
-export default fitWidth(TweetSentiment);
+export default fitWidth(ArticleSentiment);

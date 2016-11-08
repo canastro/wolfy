@@ -42,6 +42,7 @@ export default function order(state = defaultState, action) {
     case GET_OPEN_POSITIONS_SUCCESS:
         return {
             ...state,
+            isFetching: false,
             positions: action.response.data.positions
         };
 

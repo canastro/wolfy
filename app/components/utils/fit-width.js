@@ -2,10 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
-function getDisplayName(Series) {
-    const name = Series.displayName || Series.name || 'Series';
-    return name;
-}
+const getDisplayName = Component => Component.displayName || Component.name || 'Component';
 
 export default function fitWidth(WrappedComponent, withRef = true, minWidth = 100) {
     class ResponsiveComponent extends PureComponent {
@@ -33,7 +30,7 @@ export default function fitWidth(WrappedComponent, withRef = true, minWidth = 10
         }
 
         componentWillReceiveProps() {
-            this.handleWindowResize();
+            setTimeout(() => this.handleWindowResize(), 500);
         }
 
         componentWillUnmount() {
@@ -46,13 +43,12 @@ export default function fitWidth(WrappedComponent, withRef = true, minWidth = 10
 
                 const devicePixelRatio = window.devicePixelRatio || 1;
                 const backingStoreRatio = context.webkitBackingStorePixelRatio ||
-                context.mozBackingStorePixelRatio ||
-                context.msBackingStorePixelRatio ||
-                context.oBackingStorePixelRatio ||
-                context.backingStorePixelRatio || 1;
+                    context.mozBackingStorePixelRatio ||
+                    context.msBackingStorePixelRatio ||
+                    context.oBackingStorePixelRatio ||
+                    context.backingStorePixelRatio || 1;
 
-                const ratio = devicePixelRatio / backingStoreRatio;
-                return ratio;
+                return devicePixelRatio / backingStoreRatio;
             }
             return 1;
         }
@@ -107,8 +103,7 @@ export default function fitWidth(WrappedComponent, withRef = true, minWidth = 10
     }
 
     ResponsiveComponent.propTypes = {
-        isFetching: PropTypes.bool.isRequired,
-        outputs: PropTypes.array.isRequired
+        isExpanded: PropTypes.bool.isRequired
     };
 
     ResponsiveComponent.displayName = `fitWidth(${getDisplayName(WrappedComponent)})`;

@@ -20,7 +20,7 @@ export default class Statistics extends PureComponent {
         const value = format ? format(this.props[key]) : this.props[key];
 
         return (
-            <li className="statistic-item">
+            <li className="statistic-item" key={key}>
                 <header>{value}</header>
                 <footer className={color}>{title}</footer>
             </li>

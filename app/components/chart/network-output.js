@@ -21,6 +21,7 @@ class NetworkOutput extends PureComponent {
 
         return (
             <ChartCanvas
+                seriesName="NETWORK_OUTPUT"
                 ratio={this.props.ratio}
                 width={this.props.width}
                 height={400}
@@ -29,6 +30,9 @@ class NetworkOutput extends PureComponent {
                 xAccessor={d => d.date}
                 type="hybrid"
                 xScaleProvider={scale.discontinuousTimeScaleProvider}
+                disableMouseMoveEvent
+                disablePanEvent
+                disableZoomEvent
             >
                 <Chart id={1} yExtents={() => [0, 1]}>
                     <XAxis axisAt="bottom" orient="bottom" ticks={7} />

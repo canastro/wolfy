@@ -15,8 +15,12 @@ class SidebarContainer extends PureComponent {
         this.props.getStocks();
     }
 
-    handleMenuClicked(symbol, submenu) {
+    handleMenuClicked({ path, symbol, submenu }) {
         return () => {
+            if (path) {
+                return this.props.goTo(path);
+            }
+
             let url = `/stock/${symbol}`;
             if (submenu) {
                 url += `/${submenu}`;

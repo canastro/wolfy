@@ -11,10 +11,20 @@ export const GET_OPEN_POSITIONS_REQUEST = 'GET_OPEN_POSITIONS_REQUEST';
 export const GET_OPEN_POSITIONS_SUCCESS = 'GET_OPEN_POSITIONS_SUCCESS';
 export const GET_OPEN_POSITIONS_FAILURE = 'GET_OPEN_POSITIONS_FAILURE';
 
-export function getOpenPositions(symbol) {
-    const query = `query ($symbol: String!) {
-        positions(symbol: $symbol) { _id, date, type, symbol, amount, value, isActive }
+const getOpenPositionsQuery = (symbol) => {
+    if (symbol) {
+        return `query ($symbol: String!) {
+            positions(symbol: $symbol) { _id, date, type, symbol, amount, value, isActive }
+        }`;
+    }
+
+    return `query {
+        positions { _id, date, type, symbol, amount, value, isActive }
     }`;
+};
+
+export function getOpenPositions(symbol) {
+    const query = getOpenPositionsQuery(symbol);
 
     return dispatch => dispatch({
         [CALL_API]: {

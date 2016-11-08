@@ -7,8 +7,8 @@ import Loader from '../loader';
 
 export default class Rating extends PureComponent {
     _buildRatings() {
-        return this.props.ratings.map(item => (
-            <li>
+        return this.props.ratings.map((item, index) => (
+            <li key={`rating-${index}`}>
                 <div className="rating-title-wrapper">
                     <strong>{item.firmFullText}</strong>
                     <small>{moment(item.date).format('L')}</small>
@@ -38,5 +38,5 @@ export default class Rating extends PureComponent {
 
 Rating.propTypes = {
     isFetching: PropTypes.bool.isRequired,
-    ratings: PropTypes.object.isRequired
+    ratings: PropTypes.array.isRequired
 };

@@ -13,8 +13,8 @@ export default class Orders extends PureComponent {
     _buildTable() {
         if (!this.props.orders.list) { return null; }
 
-        return this.props.orders.list.map(item => (
-            <tr>
+        return this.props.orders.list.map((item, index) => (
+            <tr key={`order-${index}`}>
                 <td>{moment(item.node.date).format('L HH:mm')}</td>
                 <td>{item.node.type}</td>
                 <td>{item.node.symbol}</td>

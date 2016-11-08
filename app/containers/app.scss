@@ -1,3 +1,4 @@
+@import 'bourbon';
 @import '../assets/reset';
 @import '../assets/base';
 
@@ -11,6 +12,8 @@
         left: 0;
         right: 0;
         width: auto;
+
+        @include transition(all 0.4s ease-in-out);
 
         &.is-sidebar-expanded {
             left: 210px;

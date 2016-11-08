@@ -12,12 +12,15 @@ const { XAxis, YAxis } = axes;
 const { MouseCoordinateX, MouseCoordinateY } = coordinates;
 
 const legends = [{
+    key: 'volume',
     label: 'Volume',
     color: '#ccc'
 }, {
+    key: 'absolute_sentiment',
     label: 'Absolute Sentiment',
     color: '#2eb398'
 }, {
+    key: 'relative_sentiment',
     label: 'Relative Sentiment',
     color: '#ffd700'
 }];
@@ -33,10 +36,13 @@ class TweetSentiment extends PureComponent {
                     height={400}
                     margin={{ left: 50, right: 50, top: 10, bottom: 30 }}
                     type="svg"
-                    seriesName="MSFT"
+                    seriesName="TWEET-SENTIMENT"
                     data={this.props.data}
                     xAccessor={d => d.date}
                     xScaleProvider={scale.discontinuousTimeScaleProvider}
+                    disableMouseMoveEvent
+                    disablePanEvent
+                    disableZoomEvent
                 >
 
                     <Chart id={1} yExtents={d => d.tweet_volume}>
@@ -97,8 +103,6 @@ class TweetSentiment extends PureComponent {
 }
 
 TweetSentiment.propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
     data: PropTypes.array,
     width: PropTypes.number.isRequired,
     ratio: PropTypes.number.isRequired

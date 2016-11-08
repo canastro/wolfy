@@ -35,10 +35,12 @@ class Price extends PureComponent {
                 height={400}
                 margin={{ left: 75, right: 75, top: 10, bottom: 30 }}
                 type="svg"
-                seriesName="MSFT"
+                seriesName="PRICE"
                 data={data}
                 xAccessor={d => d.date}
                 xScaleProvider={scale.discontinuousTimeScaleProvider}
+                disablePanEvent
+                disableZoomEvent
             >
                 <Chart id={1} yExtents={d => [d.high, d.low]}>
                     <MouseCoordinateY
@@ -75,7 +77,7 @@ class Price extends PureComponent {
                     />
                 </Chart>
                 <CrossHairCursor />
-                <OHLCTooltip forChart={1} origin={[-40, 0]} />
+                <OHLCTooltip origin={[40, 0]} />
             </ChartCanvas>
         );
     }
